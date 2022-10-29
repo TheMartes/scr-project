@@ -1,18 +1,55 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div id="home">
+    <section class="container home-container">
+      <homeCont
+        v-for="item in home"
+        :key="item.id"
+        :title="item.title"
+        :item="item"
+      />
+    </section>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+<script lanf="ts">
+import axios from "axios";
+import { defineAsyncComponent } from "vue";
 
-export default defineComponent({
-  name: "HomeView",
+const homeCont = defineAsyncComponent(() =>
+  import(/* webpackChunkName: "HomeContent" */ "@/components/HomeContent.vue")
+);
+
+export default {
+  name: "HomePage",
   components: {
-    HelloWorld,
+    homeCont,
   },
-});
+  data() {
+    return {
+      home: {},
+      blogs: null,
+    };
+  },
+  async created() {
+    try {
+      await axios.get("home/").then((response) => {
+        this.home = response.data;
+      });
+    } catch (error) {
+      console.log("error: " + error);
+    }
+  },
+};
 </script>
+
+<style scoped lang="scss">
+#home {
+  padding: 4.375rem 0 3.125rem;
+}
+.home-container {
+  width: 50%;
+  @media (max-width: 480px) {
+    width: 80%;
+  }
+}
+</style>
