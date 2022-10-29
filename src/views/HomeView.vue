@@ -13,14 +13,14 @@
 
 <script lang="ts">
 import axios from "axios";
-import { defineAsyncComponent } from "vue";
+import { defineAsyncComponent, defineComponent } from "vue";
 
 const homeCont = defineAsyncComponent(
   () =>
     import(/* webpackChunkName: "HomeContent" */ "@/components/HomeContent.vue")
 );
 
-export default {
+export default defineComponent({
   name: "HomePage",
   components: {
     homeCont,
@@ -40,7 +40,7 @@ export default {
       console.log("error: " + error);
     }
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

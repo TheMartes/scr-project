@@ -22,8 +22,9 @@
 <script lang="ts">
 import axios from "axios";
 import TitleHead from "@/inc/TitleHead.vue";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   components: {
     TitleHead,
   },
@@ -34,7 +35,7 @@ export default {
     };
   },
   methods: {
-    async fetchBlogs() {
+    async fetchBlogs(): Promise<void> {
       await axios
         .get("blogs/")
         .then((resfetch) => {
@@ -46,7 +47,7 @@ export default {
   mounted() {
     this.fetchBlogs();
   },
-};
+});
 </script>
 
 <style lang="scss">
