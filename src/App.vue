@@ -19,7 +19,7 @@
   <router-view :blogs="blogs" @fetchBlogs="fetchBlogs" />
 </template>
 
-<script>
+<script lang="ts">
 import axios from "axios";
 import TitleHead from "@/inc/TitleHead.vue";
 

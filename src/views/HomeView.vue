@@ -11,12 +11,13 @@
   </div>
 </template>
 
-<script lanf="ts">
+<script lang="ts">
 import axios from "axios";
 import { defineAsyncComponent } from "vue";
 
-const homeCont = defineAsyncComponent(() =>
-  import(/* webpackChunkName: "HomeContent" */ "@/components/HomeContent.vue")
+const homeCont = defineAsyncComponent(
+  () =>
+    import(/* webpackChunkName: "HomeContent" */ "@/components/HomeContent.vue")
 );
 
 export default {
